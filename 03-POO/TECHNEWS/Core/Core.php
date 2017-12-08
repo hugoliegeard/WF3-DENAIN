@@ -1,6 +1,10 @@
 <?php
 
-class Core
+namespace Core;
+
+use Core\Controller\AppController;
+
+class Core extends AppController
 {
     public function __construct($params)
     {
@@ -13,24 +17,45 @@ class Core
         }
 
         # Récupération des Paramètres
-        $controller = $params['controller'];
-        $action     = $params['action'];
+        $controller = 'Application\Controller\\'.ucfirst($params['controller']) . 'Controller';
+        $action     = $params['action'] . 'Action';
 
-        if($controller == "news" && $action == "index") {
-            echo "<h1>JE SUIS SUR LA PAGE ACCUEIL</h1>";
-        }
+        # On vérifie si le fichier du controleur existe avant de l'instancier
+        if( file_exists( PATH_ROOT . '\\' . $controller . '.php' ) ) :
 
-        if($controller == "news" && $action == "categorie") {
-            echo "<h1>JE SUIS SUR LA PAGE CATEGORIE</h1>";
-        }
+            $obj = new $controller;
 
-        if($controller == "news" && $action == "article") {
-            echo "<h1>JE SUIS SUR LA PAGE ARTICLE</h1>";
-        }
+            if( method_exists($obj, $action) ) :
+                $obj->$action();
+            else :
+                # Aucune action correspondante
+                $this->render('error/404',[
+                    "message" => "Cette action n'existe pas"
+                ]);
+            endif;
 
-        if($controller == "membre" && $action == "inscription") {
-            echo "<h1>JE SUIS SUR LA PAGE INSCRIPTION</h1>";
-        }
+        else :
+            # Aucun controleur correspondant
+            $this->render('error/404',[
+                "message" => "Ce controleur n'existe pas"
+            ]);
+        endif;
+
+        #if($controller == "news" && $action == "index") {
+        #    echo "<h1>JE SUIS SUR LA PAGE ACCUEIL</h1>";
+        #}
+
+        #if($controller == "news" && $action == "categorie") {
+        #    echo "<h1>JE SUIS SUR LA PAGE CATEGORIE</h1>";
+        #}
+
+        #if($controller == "news" && $action == "article") {
+        #    echo "<h1>JE SUIS SUR LA PAGE ARTICLE</h1>";
+        #}
+
+        #if($controller == "membre" && $action == "inscription") {
+        #    echo "<h1>JE SUIS SUR LA PAGE INSCRIPTION</h1>";
+        #}
 
     }
 }
