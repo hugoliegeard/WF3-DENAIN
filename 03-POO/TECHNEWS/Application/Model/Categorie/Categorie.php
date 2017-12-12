@@ -4,16 +4,16 @@ namespace Application\Model\Categorie;
 
 class Categorie
 {
-    private $_IDCATEGORIE,
-            $_LIBELLECATEGORIE,
-            $_ROUTECATEGORIE;
+    private $IDCATEGORIE,
+            $LIBELLECATEGORIE,
+            $ROUTECATEGORIE;
 
     /**
      * @return int
      */
     public function getIDCATEGORIE()
     {
-        return $this->_IDCATEGORIE;
+        return $this->IDCATEGORIE;
     }
 
     /**
@@ -21,7 +21,7 @@ class Categorie
      */
     public function getLIBELLECATEGORIE()
     {
-        return $this->_LIBELLECATEGORIE;
+        return $this->LIBELLECATEGORIE;
     }
 
     /**
@@ -29,6 +29,6 @@ class Categorie
      */
     public function getROUTECATEGORIE()
     {
-        return $this->_ROUTECATEGORIE;
+        return $this->ROUTECATEGORIE;
     }
 }

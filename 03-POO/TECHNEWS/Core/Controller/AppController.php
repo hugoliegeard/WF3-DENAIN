@@ -39,4 +39,18 @@ class AppController
         return $object;
     }
 
+    # Debug des Paramètres de la Vue
+    public function debugParams() {
+        echo '<pre>';
+            print_r($this->getViewparams());
+        echo '</pre>';
+    }
+
+    # Debug du Paramètre passé
+    public function debug($params) {
+        echo '<pre>';
+            print_r($params);
+        echo '</pre>';
+    }
+
 }

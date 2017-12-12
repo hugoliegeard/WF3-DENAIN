@@ -2,16 +2,16 @@
 
 namespace Application\Controller;
 
+use Application\Model\Article\ArticleDb;
+use Application\Model\Categorie\CategorieDb;
 use Core\Controller\AppController;
 
 class NewsController extends AppController {
 
     public function indexAction() {
+
         # Affichage de la vue
-        $this->render('news/index', [
-            "titre"     => "WF3 Denain...",
-            "accroche"  => "Partez-tous !"
-        ]);
+        $this->render('news/index', []);
         # include_once PATH_VIEWS . '/news/index.php';
     }
 
