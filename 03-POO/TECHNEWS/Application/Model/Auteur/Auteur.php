@@ -40,4 +40,12 @@ class Auteur
     {
         return $this->EMAILAUTEUR;
     }
+
+    /**
+     * Retourne le Nom Complet de l'Auteur
+     * @return string
+     */
+    public function getNOMCOMPLETAUTEUR() {
+        return $this->PRENOMAUTEUR . ' ' . $this->NOMAUTEUR;
+    }
 }

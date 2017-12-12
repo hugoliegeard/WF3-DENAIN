@@ -84,6 +84,8 @@
 <script src="<?= PATH_PUBLIC ?>/js/jquery.min.js"></script>
 <script src="<?= PATH_PUBLIC ?>/js/bootstrap.js"></script>
 <script src="<?= PATH_PUBLIC ?>/js/owl.carousel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.4/moment.min.js" integrity="sha256-1QLeCbUvEo+9OEl5Eit/RqXkjznbjHvc71qnn2mp1C0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.4/locale/fr.js" integrity="sha256-DJpVvSniFq7HyHLFi3n3thaGrgI4XiEsDnQwyY3BnIo=" crossorigin="anonymous"></script>
 <script src="<?= PATH_PUBLIC ?>/js/main.js"></script>
 </body>
 </html>

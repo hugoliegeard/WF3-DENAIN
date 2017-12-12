@@ -2,6 +2,13 @@
     $(document).on('ready', function () {
 
         "use strict";
+
+        /**Gestion du Temps**/
+        $('time').each(function(t, e) {
+           let time = moment( $(e).attr('datetime') );
+           $(e).html('<span>' + time.from(moment()) + '</span>');
+        });
+
         /**Preload**/
         $('#page-loader').delay(600).fadeOut(400, function () {
             $('body').fadeIn();

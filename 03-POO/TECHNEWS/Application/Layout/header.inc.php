@@ -19,6 +19,9 @@
             'DATECREATIONARTICLE DESC',
             5);
 
+    # Récupération des Articles en position "Special"
+    $special = $ArticleDb->fetchAll('SPECIALARTICLE = 1');
+
     # Pour tester
     # $this->debug(...);
 

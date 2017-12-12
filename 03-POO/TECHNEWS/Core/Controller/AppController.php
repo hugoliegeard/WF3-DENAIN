@@ -39,6 +39,18 @@ class AppController
         return $object;
     }
 
+    /**
+     * Vérifie l'existance de valeur dans $_GET['action']
+     * et retourne l'action.
+     * @return string Action
+     */
+    public function getAction() {
+        if(empty($_GET['action'])) {
+            return 'accueil';
+        }
+        return $_GET['action'];
+    }
+
     # Debug des Paramètres de la Vue
     public function debugParams() {
         echo '<pre>';

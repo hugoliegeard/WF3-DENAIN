@@ -11,82 +11,24 @@
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="tab1">
             <ul class="list-news-popular">
-                <li>
-                    <a href="#">
-                        <img alt="" src="images/product/8.jpg">
-                    </a>
-                    <h3><a href="#">Netflix Speeds Jumped 51% This Year</a></h3>
-                    <div class="meta-post">
+                <?php foreach($sidebar as $article) : ?>
+                    <li>
                         <a href="#">
-                            Ashley Ford
-
+                            <img alt="<?= $article->getTITREARTICLE() ?>"
+                                 src="<?= $article->getFULLIMAGEARTICLE(); ?>" />
                         </a>
-                        <em></em>
-                        <span>
-							24 Aug  2016
-						</span>
-                    </div>
-                </li>
-                <li>
-                    <a href="#">
-                        <img alt="" src="images/product/9.jpg">
-                    </a>
-                    <h3><a href="#">Uber wants to build planes to beat city traffic</a></h3>
-                    <div class="meta-post">
-                        <a href="#">
-                            Karla	Walters
-                        </a>
-                        <em></em>
-                        <span>
-							04 Sep  2016
-						</span>
-                    </div>
-                </li>
-                <li>
-                    <a href="#">
-                        <img alt="" src="images/product/10.jpg">
-                    </a>
-                    <h3><a href="#">Apple reportedly prototyping their Amazon Echo competitor</a></h3>
-                    <div class="meta-post">
-                        <a href="#">
-                            Super User
-                        </a>
-                        <em></em>
-                        <span>
-							01 Sep  2016
-						</span>
-                    </div>
-                </li>
-                <li>
-                    <a href="#">
-                        <img alt="" src="images/product/11.jpg">
-                    </a>
-                    <h3><a href="#">Watch out: That USB stick in your mailbox might be infected</a></h3>
-                    <div class="meta-post">
-                        <a href="#">
-                            Sue	Benson
-                        </a>
-                        <em></em>
-                        <span>
-							27 Aug  2016
-						</span>
-                    </div>
-                </li>
-                <li>
-                    <a href="#">
-                        <img alt="" src="images/product/13.jpg">
-                    </a>
-                    <h3><a href="#">Tumblr brings Apple’s ‘Live Photos’ to the web</a></h3>
-                    <div class="meta-post">
-                        <a href="#">
-                            Super User
-                        </a>
-                        <em></em>
-                        <span>
-							15 Sep 2016
-						</span>
-                    </div>
-                </li>
+                        <h3><a href="#"><?= $article->getTITREARTICLE() ?></a></h3>
+                        <div class="meta-post">
+                            <a href="#">
+                                <?= $article->getAUTEUROBJ()->getNOMCOMPLETAUTEUR() ?>
+                            </a>
+                            <em></em>
+                            <span>
+                                <time datetime="<?= $article->getDATECREATIONARTICLE() ?>"></time>
+                            </span>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
             </ul>
 
         </div>
@@ -148,22 +90,24 @@
 			</span>
         </div>
         <div class="list-special">
-            <article class="news-two-large">
-                <a href="#">
-                    <img alt="" src="images/product/4.jpg">
-                </a>
-                <h3><a href="#">Six big ways MacOS Sierra is going to change your Apple experience</a></h3>
-                <div class="meta-post">
+            <?php foreach($special as $article) : ?>
+                <article class="news-two-large">
                     <a href="#">
-                        Sue	Benson
+                        <img alt="<?= $article->getTITREARTICLE() ?>"
+                             src="<?= $article->getFULLIMAGEARTICLE(); ?>" />
                     </a>
-                    <em></em>
-                    <span>
-						23 Sep 2016
-					</span>
-                </div>
-
-            </article>
+                    <h3><a href="#"><?= $article->getTITREARTICLE() ?></a></h3>
+                    <div class="meta-post">
+                        <a href="#">
+                            <?= $article->getAUTEUROBJ()->getNOMCOMPLETAUTEUR() ?>
+                        </a>
+                        <em></em>
+                        <span>
+                            <time datetime="<?= $article->getDATECREATIONARTICLE() ?>"></time>
+                        </span>
+                    </div>
+                </article>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>
