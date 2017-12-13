@@ -17,7 +17,7 @@
                 <ul class="list-category">
                     <?php foreach ($categories as $categorie) : ?>
                         <li>
-                            <a href="<?= PATH_PUBLIC.'/'.$categorie->getROUTECATEGORIE() ?>">
+                            <a href="<?= $this->generateUrl('news', strtolower($categorie->getLIBELLECATEGORIE())); ?>">
                                 <?= $categorie->getLIBELLECATEGORIE() ?>
                             </a>
                         </li>

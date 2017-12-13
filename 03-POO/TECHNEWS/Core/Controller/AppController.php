@@ -2,9 +2,26 @@
 
 namespace Core\Controller;
 
+use Core\Model\DbFactory;
+use Core\Model\Helper;
+
 class AppController
 {
+    use Helper;
+
     private $_viewparams;
+
+    /**
+     * Permet d'initialiser la connexion à la BDD pour
+     * l'ensemble des Actions de mes Controllers.
+     * AppController constructor.
+     */
+    public function __construct()
+    {
+        # Initialisation de IdiormFactory à la construction
+        # de AppController
+        DbFactory::IdiormFactory();
+    }
 
     /**
      * Permet de générer l'affichage de la vue passée en paramètre.
@@ -16,14 +33,34 @@ class AppController
         # Récupération et Affectation des Paramètres de la Vue
         $this->_viewparams = $viewparam;
 
-        # Chargement du Header
-        include_once PATH_HEADER;
-
         # Inclusion de la Vue
-        include_once PATH_VIEWS . '/' . $view . '.php';
+        $view = PATH_VIEWS . '/' . $view . '.php';
+        if( file_exists($view) ) :
 
-        # Chargement du Footer
-        include_once PATH_FOOTER;
+            # Chargement du Header
+            include_once PATH_HEADER;
+
+            # La Vue
+            include_once $view;
+
+            # Chargement du Footer
+            include_once PATH_FOOTER;
+
+        else :
+            # Si la vue n'existe pas, on retourne une erreur 404
+            $this->render('error/404', [
+                'message' => 'Aucune vue correspondante'
+            ]);
+        endif;
+    }
+
+    /**
+     * Effectue un rendu JSON du Tableau passé en paramètre
+     * @param array $param
+     */
+    protected function renderJson(Array $param) {
+        header('Content-Type: application/json');
+        echo json_encode($param);
     }
 
     /**

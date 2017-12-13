@@ -13,11 +13,15 @@
             <ul class="list-news-popular">
                 <?php foreach($sidebar as $article) : ?>
                     <li>
-                        <a href="#">
+                        <a href="<?= $this->generateUfm('article/$1-$2.html',
+                            [ $article->getIDARTICLE(),
+                                $this->slugify($article->getTITREARTICLE()) ]) ?>">
                             <img alt="<?= $article->getTITREARTICLE() ?>"
                                  src="<?= $article->getFULLIMAGEARTICLE(); ?>" />
                         </a>
-                        <h3><a href="#"><?= $article->getTITREARTICLE() ?></a></h3>
+                        <h3><a href="<?= $this->generateUfm('article/$1-$2.html',
+                                [ $article->getIDARTICLE(),
+                                    $this->slugify($article->getTITREARTICLE()) ]) ?>"><?= $article->getTITREARTICLE() ?></a></h3>
                         <div class="meta-post">
                             <a href="#">
                                 <?= $article->getAUTEUROBJ()->getNOMCOMPLETAUTEUR() ?>
@@ -92,11 +96,15 @@
         <div class="list-special">
             <?php foreach($special as $article) : ?>
                 <article class="news-two-large">
-                    <a href="#">
+                    <a href="<?= $this->generateUfm('article/$1-$2.html',
+                        [ $article->getIDARTICLE(),
+                            $this->slugify($article->getTITREARTICLE()) ]) ?>">
                         <img alt="<?= $article->getTITREARTICLE() ?>"
                              src="<?= $article->getFULLIMAGEARTICLE(); ?>" />
                     </a>
-                    <h3><a href="#"><?= $article->getTITREARTICLE() ?></a></h3>
+                    <h3><a href="<?= $this->generateUfm('article/$1-$2.html',
+                            [ $article->getIDARTICLE(),
+                                $this->slugify($article->getTITREARTICLE()) ]) ?>"><?= $article->getTITREARTICLE() ?></a></h3>
                     <div class="meta-post">
                         <a href="#">
                             <?= $article->getAUTEUROBJ()->getNOMCOMPLETAUTEUR() ?>
