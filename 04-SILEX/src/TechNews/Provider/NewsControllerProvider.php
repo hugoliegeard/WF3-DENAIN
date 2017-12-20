@@ -54,7 +54,7 @@ class NewsControllerProvider implements ControllerProviderInterface
         $controllers
             ->get('/inscription.html',
                 'TechNews\Controller\NewsController::inscriptionAction')
-            ->bind('news_inscription');
+                    ->bind('news_inscription');
 
         $controllers
             ->post('/inscription.html',

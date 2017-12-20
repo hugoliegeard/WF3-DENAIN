@@ -10,7 +10,7 @@
             {% if error %}
                 <div class="alert alert-danger">
                     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                    {{ error }}
+                    {{ error | replace({"Bad credentials." : "Identifiant et/ou mot de passe incorrect."}) }}
                 </div>
             {% endif %}
 
