@@ -3,6 +3,7 @@
 namespace TechNews\Controller;
 
 use Silex\Application;
+use Symfony\Component\HttpFoundation\Request;
 
 class NewsController
 {
@@ -118,6 +119,61 @@ class NewsController
         return $app['twig']->render('sidebar.html.twig', [
             'sidebar'    => $sidebar,
             'special'    => $special
+        ]);
+    }
+
+    /**
+     * Affichage de la Page Inscription
+     * @param Application $app
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function inscriptionAction(Application $app) {
+        return $app['twig']->render('inscription.html.twig');
+    }
+
+    /**
+     * Traitement POST du Formulaire d'Inscription
+     * @param Application $app
+     * @param Request $request
+     */
+    public function inscriptionPost(Application $app, Request $request) {
+
+        # Vérification et la Sécurisation des données POST
+        # ...
+
+        # Connexion à la BDD
+        $auteur = $app['idiorm.db']->for_table('auteur')->create();
+
+        # Affectation de Valeurs
+        $auteur->PRENOMAUTEUR   = $request->get('PRENOMAUTEUR');
+        $auteur->NOMAUTEUR      = $request->get('NOMAUTEUR');
+        $auteur->EMAILAUTEUR    = $request->get('EMAILAUTEUR');
+        $auteur->MDPAUTEUR      = $app['security.default_encoder']
+            ->encodePassword($request->get('MDPAUTEUR'), '');
+        $auteur->ROLEAUTEUR     = 'ROLE_MEMBRE';
+
+        # On persiste en BDD
+        $auteur->save();
+
+        # On envoi un email de confirmation ou de bienvenue...
+        # On envoi une notification à l'administrateur
+        # ...
+
+        # On redirige l'utilisateur sur la page de connexion
+        return $app->redirect('connexion.html?inscription=success');
+
+    }
+
+    /**
+     * Affichage de la Page Connexion
+     * @param Application $app
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function connexionAction(Application $app, Request $request) {
+        return $app['twig']->render('connexion.html.twig', [
+            'error'         => $app['security.last_error']($request),
+            'last_username' => $app['session']->get('_security.last_username')
         ]);
     }
 
