@@ -3,10 +3,14 @@
 namespace TechNews\Extension;
 
 
+use TechNews\Helper;
+
 class TechNewsTwigExtension extends \Twig_Extension
 {
     # : https://twig.symfony.com/doc/2.x/advanced.html#creating-an-extension
     # : https://twig.symfony.com/doc/2.x/advanced.html#id3
+
+    use Helper;
 
     /**
      * Création des Filtres Accroche et "Slugify"
@@ -40,29 +44,7 @@ class TechNewsTwigExtension extends \Twig_Extension
 
             new \Twig_Filter('slugify', function($text) {
 
-                // replace non letter or digits by -
-                $text = preg_replace('~[^\pL\d]+~u', '-', $text);
-
-                // transliterate
-                $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-
-                // remove unwanted characters
-                $text = preg_replace('~[^-\w]+~', '', $text);
-
-                // trim
-                $text = trim($text, '-');
-
-                // remove duplicate -
-                $text = preg_replace('~-+~', '-', $text);
-
-                // lowercase
-                $text = strtolower($text);
-
-                if (empty($text)) {
-                    return 'n-a';
-                }
-
-                return $text;
+                return $this->slugify($text);
 
             }) # -- Fin de Twig Filter Slugify
 

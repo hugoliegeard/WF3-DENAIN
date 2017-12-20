@@ -19,7 +19,8 @@ $app->register(new \Idiorm\Silex\Provider\IdiormServiceProvider(), array(
         'username' => 'root',
         'password' => '',
         'id_column_overrides' => array(
-            'view_articles' =>  'IDARTICLE'
+            'view_articles' =>  'IDARTICLE',
+            'categorie'     =>  'IDCATEGORIE'
         )
     )
 ));
